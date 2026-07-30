@@ -121,7 +121,7 @@ function CountRoundWizard({
       {phase === 'intro' && (
         <div className="wizard-intro">
           <p className="wizard-hint">
-            Zellt zäme use, wär wie viel {round.name} gno het. Los geit's mit{' '}
+            Zellet zäme use, wär wie viel {round.name} gno hät. Los gaht's mit{' '}
             <strong>{players[0]?.name}</strong>.
           </p>
           <div className="round-actions">
@@ -145,7 +145,7 @@ function CountRoundWizard({
           return (
             <div className="wizard-dial">
               <p className="wizard-player">
-                Wie viel <strong>{round.name}</strong> het{' '}
+                Wie viel <strong>{round.name}</strong> hät{' '}
                 <span className="wizard-player-name">{player.name}</span> gno?
               </p>
               <p className="wizard-hint">No {remaining} übrig zum verteile.</p>
