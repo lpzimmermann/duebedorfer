@@ -91,6 +91,25 @@
   opacity: 1;
 }
 
+.sound-button {
+  display: block;
+  margin: 0 auto 10px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--gold);
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--card-bg);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.sound-button:active {
+  transform: scale(0.94);
+}
+
 /* Reset confirmation dialog */
 .dialog-overlay {
   position: fixed;
@@ -560,6 +579,10 @@
     border-color: var(--accent);
     color: var(--accent);
     transform: rotate(-45deg);
+  }
+
+  .sound-button:hover {
+    background: rgba(0, 0, 0, 0.3);
   }
 
   .primary-button:hover:not(:disabled) {

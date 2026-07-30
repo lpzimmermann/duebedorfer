@@ -6,6 +6,7 @@ import CountRoundWizard from './components/CountRoundWizard'
 import Scoreboard from './components/Scoreboard'
 import GameOver from './components/GameOver'
 import ConfirmDialog from './components/ConfirmDialog'
+import MemeSoundButton from './components/MemeSoundButton'
 import { buildRounds } from './game/rounds'
 import { resultForRound, totalsByPlayer, withRoundResult } from './game/scoring'
 import { clearGame, loadGame, saveGame } from './game/storage'
@@ -169,6 +170,7 @@ function App() {
             🦜 Pura Vida
           </button>
         </div>
+        <MemeSoundButton />
         <p>{content.footer}</p>
       </footer>
     </div>
