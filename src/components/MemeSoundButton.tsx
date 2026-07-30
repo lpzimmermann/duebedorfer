@@ -16,7 +16,7 @@ function MemeSoundButton() {
 
   return (
     <button type="button" className="sound-button" onClick={play} aria-label="FAAAAAAAHH!">
-      📢 FAAAAAAAHH!
+      📢
     </button>
   )
 }

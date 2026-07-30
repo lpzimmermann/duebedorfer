@@ -21,6 +21,7 @@
 
 .reset-button {
   position: absolute;
+  z-index: 1;
   top: 8px;
   right: 8px;
   width: 40px;
@@ -43,6 +44,8 @@
   font-size: 17px;
   max-width: 32em;
   margin: 0 auto;
+  padding: 0 56px;
+  box-sizing: border-box;
 }
 
 .app-main {
@@ -92,22 +95,24 @@
 }
 
 .sound-button {
-  display: block;
-  margin: 0 auto 10px;
-  font: inherit;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 6px 16px;
-  border-radius: 999px;
-  border: 2px solid var(--gold);
-  background: rgba(0, 0, 0, 0.15);
-  color: var(--card-bg);
+  position: absolute;
+  z-index: 1;
+  top: 56px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #b3540f;
+  background: #ff8c1a;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
   cursor: pointer;
   transition: transform 0.1s;
 }
 
 .sound-button:active {
-  transform: scale(0.94);
+  transform: scale(0.9);
 }
 
 /* Reset confirmation dialog */
@@ -582,7 +587,8 @@
   }
 
   .sound-button:hover {
-    background: rgba(0, 0, 0, 0.3);
+    border-color: #fff;
+    transform: translateY(-2px);
   }
 
   .primary-button:hover:not(:disabled) {

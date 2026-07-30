@@ -86,6 +86,7 @@ function App() {
             ↺
           </button>
         )}
+        {game.phase === 'playing' && <MemeSoundButton />}
         <h1>{content.title}</h1>
         <p className="tagline">{content.tagline}</p>
       </header>
@@ -170,7 +171,6 @@ function App() {
             🦜 Pura Vida
           </button>
         </div>
-        <MemeSoundButton />
         <p>{content.footer}</p>
       </footer>
     </div>
