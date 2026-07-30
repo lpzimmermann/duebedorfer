@@ -4,17 +4,16 @@ import Scoreboard from './Scoreboard'
 interface GameOverProps {
   standings: Standing[]
   onNewGame: () => void
+  confetti: string[]
 }
 
-const CONFETTI = ['🔔', '🌹', '🌰', '🛡️', '🎉']
-
-function GameOver({ standings, onNewGame }: GameOverProps) {
+function GameOver({ standings, onNewGame, confetti }: GameOverProps) {
   const winner = standings[0]
 
   return (
     <section className="game-over">
       <div className="confetti-row" aria-hidden="true">
-        {CONFETTI.map((emoji, i) => (
+        {confetti.map((emoji, i) => (
           <span key={i} className="confetti">
             {emoji}
           </span>

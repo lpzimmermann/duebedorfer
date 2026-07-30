@@ -9,9 +9,10 @@
   --text: #4a3a2c;
   --text-h: #201206;
 
-  --swiss-red: #d52b1e;
-  --swiss-red-dark: #a51e14;
+  --accent: #d52b1e;
+  --accent-dark: #a51e14;
   --gold: #d4af37;
+  --gold-bg: rgba(212, 175, 55, 0.18);
 
   --shadow:
     rgba(0, 0, 0, 0.35) 0 10px 20px -6px, rgba(0, 0, 0, 0.2) 0 4px 8px -2px;
@@ -51,6 +52,32 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+}
+
+/*
+ * Pura Vida Jass — a second, switchable skin for the same app (see the
+ * footer toggle). Same component markup and CSS throughout; only the
+ * custom properties and the page background change.
+ */
+:root[data-theme='puravida'] {
+  --felt: #0f8b8d;
+  --felt-dark: #0a5c5e;
+
+  --card-bg: #fff6e6;
+  --card-border: #ffb703;
+  --text: #6b4a2f;
+  --text-h: #3a2110;
+
+  --accent: #ff5e62;
+  --accent-dark: #d43d41;
+  --gold: #ffb703;
+  --gold-bg: rgba(255, 183, 3, 0.22);
+
+  background-color: #ff9a3c;
+  background-image:
+    radial-gradient(circle at 15% 18%, rgba(255, 255, 255, 0.3) 0%, transparent 42%),
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.16) 0%, transparent 46%),
+    linear-gradient(165deg, #ffd166 0%, #ff9a3c 28%, #ff5e8a 58%, #6a4c93 82%, #10707a 100%);
 }
 
 #root {
