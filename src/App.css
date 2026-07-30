@@ -109,6 +109,12 @@
   color: var(--swiss-red);
 }
 
+.icon-button-placeholder {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+}
+
 .icon-button {
   background: var(--card-bg);
   color: var(--text-h);
@@ -287,8 +293,7 @@
   cursor: pointer;
   transition:
     transform 0.15s,
-    border-color 0.15s,
-    background-color 0.15s;
+    border-color 0.15s;
 }
 
 .dial-button:hover {
@@ -320,12 +325,6 @@
   border-color: var(--gold);
   background: rgba(212, 175, 55, 0.18);
   color: var(--swiss-red-dark);
-}
-
-.round-total-hint {
-  font-size: 14px;
-  color: var(--text);
-  margin-bottom: 16px;
 }
 
 .round-actions {

@@ -32,14 +32,17 @@ function CountRoundWizard({
   onBack,
 }: CountRoundWizardProps) {
   const hasInitial = initialScores !== undefined
+  const [initial] = useState(() => {
+    const initialCounts = countsFromScores(round, players, initialScores)
+    return {
+      counts: initialCounts,
+      lastManual: hasInitial ? lastManualIndex(players, round.maxTotal, initialCounts) : -1,
+    }
+  })
   const [phase, setPhase] = useState<Phase>(hasInitial ? 'review' : 'intro')
-  const [counts, setCounts] = useState<Record<string, number>>(() =>
-    countsFromScores(round, players, initialScores),
-  )
+  const [counts, setCounts] = useState<Record<string, number>>(initial.counts)
   const [playerIndex, setPlayerIndex] = useState(0)
-  const [lastManual, setLastManual] = useState(() =>
-    hasInitial ? lastManualIndex(players, round.maxTotal, countsFromScores(round, players, initialScores)) : -1,
-  )
+  const [lastManual, setLastManual] = useState(initial.lastManual)
 
   function startWizard() {
     const resolved = resolveForcedPlayers(players, round.maxTotal, {}, 0)
@@ -152,6 +155,7 @@ function CountRoundWizard({
                     key={n}
                     type="button"
                     className="dial-button"
+                    aria-label={`${n} für ${player.name}`}
                     onClick={() => pick(n)}
                   >
                     {n}
@@ -177,14 +181,18 @@ function CountRoundWizard({
                 <span className="count-points">
                   {(counts[player.id] ?? 0) * round.pointsPerUnit} Pkt
                 </span>
-                <button
-                  type="button"
-                  className="icon-button"
-                  aria-label={`${player.name} korrigiere`}
-                  onClick={() => editFromReview(index)}
-                >
-                  ✎
-                </button>
+                {index <= lastManual ? (
+                  <button
+                    type="button"
+                    className="icon-button"
+                    aria-label={`${player.name} korrigiere`}
+                    onClick={() => editFromReview(index)}
+                  >
+                    ✎
+                  </button>
+                ) : (
+                  <span className="icon-button-placeholder" aria-hidden="true" />
+                )}
               </li>
             ))}
           </ul>
