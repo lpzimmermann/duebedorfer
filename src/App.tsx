@@ -10,6 +10,7 @@ import { buildRounds } from './game/rounds'
 import { resultForRound, totalsByPlayer, withRoundResult } from './game/scoring'
 import { clearGame, loadGame, saveGame } from './game/storage'
 import type { GameState, Player, RoundScores } from './game/types'
+import { loadTheme, saveTheme, THEME_CONTENT, type Theme } from './theme'
 
 const INITIAL_STATE: GameState = {
   phase: 'setup',
@@ -22,6 +23,7 @@ const INITIAL_STATE: GameState = {
 function App() {
   const [game, setGame] = useState<GameState>(() => loadGame() ?? INITIAL_STATE)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const [theme, setTheme] = useState<Theme>(() => loadTheme())
 
   useEffect(() => {
     if (game.phase === 'setup') {
@@ -30,6 +32,13 @@ function App() {
       saveGame(game)
     }
   }, [game])
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    saveTheme(theme)
+  }, [theme])
+
+  const content = THEME_CONTENT[theme]
 
   const rounds = game.players.length > 0 ? buildRounds(game.deckCount || 1, game.players.length) : []
 
@@ -76,8 +85,8 @@ function App() {
             ↺
           </button>
         )}
-        <h1>Dübendorfer</h1>
-        <p className="tagline">De Jass-Zähler für alli, wo am liebschte wenig Pünkt händ</p>
+        <h1>{content.title}</h1>
+        <p className="tagline">{content.tagline}</p>
       </header>
 
       {showResetConfirm && (
@@ -102,7 +111,7 @@ function App() {
       )}
 
       <main className="app-main">
-        {game.phase === 'setup' && <PlayerSetup onStart={startGame} />}
+        {game.phase === 'setup' && <PlayerSetup onStart={startGame} suitEmoji={content.suitEmoji} />}
 
         {game.phase === 'playing' &&
           (() => {
@@ -138,11 +147,29 @@ function App() {
             )
           })()}
 
-        {game.phase === 'finished' && <GameOver standings={standings} onNewGame={newGame} />}
+        {game.phase === 'finished' && (
+          <GameOver standings={standings} onNewGame={newGame} confetti={content.confetti} />
+        )}
       </main>
 
       <footer className="app-footer">
-        <p>Dübendorfer Jass Counter</p>
+        <div className="theme-switch" role="group" aria-label="Theme wähle">
+          <button
+            type="button"
+            className={theme === 'jassteppich' ? 'active' : ''}
+            onClick={() => setTheme('jassteppich')}
+          >
+            🇨🇭 Jassteppich
+          </button>
+          <button
+            type="button"
+            className={theme === 'puravida' ? 'active' : ''}
+            onClick={() => setTheme('puravida')}
+          >
+            🦜 Pura Vida
+          </button>
+        </div>
+        <p>{content.footer}</p>
       </footer>
     </div>
   )

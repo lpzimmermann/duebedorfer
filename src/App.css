@@ -60,6 +60,37 @@
   opacity: 0.7;
 }
 
+.theme-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-switch button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--card-bg);
+  cursor: pointer;
+  opacity: 0.75;
+  transition:
+    background-color 0.15s,
+    opacity 0.15s;
+}
+
+.theme-switch button.active {
+  background: var(--card-bg);
+  color: var(--text-h);
+  opacity: 1;
+}
+
 /* Reset confirmation dialog */
 .dialog-overlay {
   position: fixed;
@@ -129,18 +160,18 @@
 }
 
 .primary-button {
-  background: var(--swiss-red);
+  background: var(--accent);
   color: #fff;
   border: none;
   font-size: 18px;
   padding: 12px 28px;
-  box-shadow: 0 4px 0 var(--swiss-red-dark);
+  box-shadow: 0 4px 0 var(--accent-dark);
   width: 100%;
 }
 
 .primary-button:active:not(:disabled) {
   transform: translateY(2px);
-  box-shadow: 0 2px 0 var(--swiss-red-dark);
+  box-shadow: 0 2px 0 var(--accent-dark);
 }
 
 .primary-button:disabled {
@@ -209,7 +240,7 @@
 
 .player-row input:focus {
   outline: none;
-  border-color: var(--swiss-red);
+  border-color: var(--accent);
 }
 
 .add-player-button {
@@ -246,7 +277,7 @@
 
 .deck-button.selected {
   border-color: var(--gold);
-  background: rgba(212, 175, 55, 0.18);
+  background: var(--gold-bg);
 }
 
 .deck-count {
@@ -330,7 +361,7 @@
   min-width: 4em;
   text-align: right;
   font-variant-numeric: tabular-nums;
-  color: var(--swiss-red-dark);
+  color: var(--accent-dark);
   font-weight: 600;
 }
 
@@ -354,7 +385,7 @@
 }
 
 .wizard-player-name {
-  color: var(--swiss-red);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -404,8 +435,8 @@
 
 .winner-button.selected {
   border-color: var(--gold);
-  background: rgba(212, 175, 55, 0.18);
-  color: var(--swiss-red-dark);
+  background: var(--gold-bg);
+  color: var(--accent-dark);
 }
 
 .round-actions {
@@ -451,7 +482,7 @@
 .standing-total {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: var(--swiss-red-dark);
+  color: var(--accent-dark);
 }
 
 /* Game over */
@@ -504,7 +535,7 @@
 .winner-name {
   font-size: 32px;
   font-weight: 700;
-  color: var(--swiss-red);
+  color: var(--accent);
   margin: 8px 0 4px;
 }
 
@@ -526,8 +557,8 @@
  */
 @media (hover: hover) and (pointer: fine) {
   .reset-button:hover {
-    border-color: var(--swiss-red);
-    color: var(--swiss-red);
+    border-color: var(--accent);
+    color: var(--accent);
     transform: rotate(-45deg);
   }
 
@@ -536,23 +567,23 @@
   }
 
   .secondary-button:hover {
-    border-color: var(--swiss-red);
-    color: var(--swiss-red);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .icon-button:hover {
-    border-color: var(--swiss-red);
-    color: var(--swiss-red);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .deck-button:hover {
-    border-color: var(--swiss-red);
+    border-color: var(--accent);
     transform: translateY(-2px);
   }
 
   .dial-button:hover {
-    border-color: var(--swiss-red);
-    color: var(--swiss-red);
+    border-color: var(--accent);
+    color: var(--accent);
     transform: translateY(-2px);
   }
 }

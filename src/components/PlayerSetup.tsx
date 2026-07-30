@@ -4,16 +4,16 @@ import type { Player } from '../game/types'
 
 const MIN_PLAYERS = 2
 const MAX_PLAYERS = 8
-const SUIT_EMOJI = ['🔔', '🌹', '🌰', '🛡️']
 const DECK_OPTIONS = [1, 2, 3]
 
 interface PlayerSetupProps {
   onStart: (players: Player[], deckCount: number) => void
+  suitEmoji: string[]
 }
 
 type Step = 'decks' | 'players'
 
-function PlayerSetup({ onStart }: PlayerSetupProps) {
+function PlayerSetup({ onStart, suitEmoji }: PlayerSetupProps) {
   const [step, setStep] = useState<Step>('decks')
   const [deckCount, setDeckCount] = useState(1)
   const [names, setNames] = useState<string[]>(['', ''])
@@ -84,7 +84,7 @@ function PlayerSetup({ onStart }: PlayerSetupProps) {
         {names.map((name, index) => (
           <li key={index} className="player-row">
             <span className="player-suit" aria-hidden="true">
-              {SUIT_EMOJI[index % SUIT_EMOJI.length]}
+              {suitEmoji[index % suitEmoji.length]}
             </span>
             <input
               type="text"
