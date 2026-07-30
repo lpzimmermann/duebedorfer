@@ -38,6 +38,7 @@ export type GamePhase = 'setup' | 'playing' | 'finished'
 export interface GameState {
   phase: GamePhase
   players: Player[]
+  deckCount: number
   results: RoundResult[]
   currentRound: number
 }

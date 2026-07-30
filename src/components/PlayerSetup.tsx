@@ -5,12 +5,17 @@ import type { Player } from '../game/types'
 const MIN_PLAYERS = 2
 const MAX_PLAYERS = 8
 const SUIT_EMOJI = ['🔔', '🌹', '🌰', '🛡️']
+const DECK_OPTIONS = [1, 2, 3]
 
 interface PlayerSetupProps {
-  onStart: (players: Player[]) => void
+  onStart: (players: Player[], deckCount: number) => void
 }
 
+type Step = 'decks' | 'players'
+
 function PlayerSetup({ onStart }: PlayerSetupProps) {
+  const [step, setStep] = useState<Step>('decks')
+  const [deckCount, setDeckCount] = useState(1)
   const [names, setNames] = useState<string[]>(['', ''])
 
   function updateName(index: number, value: string) {
@@ -40,13 +45,40 @@ function PlayerSetup({ onStart }: PlayerSetupProps) {
       id: `${Date.now()}-${i}`,
       name,
     }))
-    onStart(players)
+    onStart(players, deckCount)
+  }
+
+  if (step === 'decks') {
+    return (
+      <div className="setup card">
+        <h2>Wie viel Kartespiel? 🎴</h2>
+        <p className="setup-hint">Mit meh Spiel git's o meh Stich, Schälle und Ober zum verteile.</p>
+
+        <div className="deck-options">
+          {DECK_OPTIONS.map((count) => (
+            <button
+              key={count}
+              type="button"
+              className={`deck-button${deckCount === count ? ' selected' : ''}`}
+              onClick={() => setDeckCount(count)}
+            >
+              <span className="deck-count">{count}</span>
+              <span className="deck-label">Spiel</span>
+            </button>
+          ))}
+        </div>
+
+        <button type="button" className="primary-button" onClick={() => setStep('players')}>
+          Witer →
+        </button>
+      </div>
+    )
   }
 
   return (
     <form className="setup card" onSubmit={handleSubmit}>
-      <h2>Wer spillt mit? 🎉</h2>
-      <p className="setup-hint">Zwüsche 2 und 8 Spieler:inne.</p>
+      <h2>Wär spillt mit? 🎉</h2>
+      <p className="setup-hint">Zwüschet 2 und 8 Spieler:inne.</p>
 
       <ul className="player-list">
         {names.map((name, index) => (
@@ -65,7 +97,7 @@ function PlayerSetup({ onStart }: PlayerSetupProps) {
               <button
                 type="button"
                 className="icon-button"
-                aria-label={`Spieler:in ${index + 1} entfernen`}
+                aria-label={`Spieler:in ${index + 1} usenäh`}
                 onClick={() => removePlayer(index)}
               >
                 ✕
@@ -76,14 +108,19 @@ function PlayerSetup({ onStart }: PlayerSetupProps) {
       </ul>
 
       {names.length < MAX_PLAYERS && (
-        <button type="button" className="secondary-button" onClick={addPlayer}>
-          + Spieler:in dezue
+        <button type="button" className="secondary-button add-player-button" onClick={addPlayer}>
+          + Spieler:in derzue
         </button>
       )}
 
-      <button type="submit" className="primary-button" disabled={!canStart}>
-        Los geht's 🃏
-      </button>
+      <div className="round-actions">
+        <button type="button" className="secondary-button" onClick={() => setStep('decks')}>
+          ← Zrugg
+        </button>
+        <button type="submit" className="primary-button" disabled={!canStart}>
+          Auf gaht's 🃏
+        </button>
+      </div>
     </form>
   )
 }

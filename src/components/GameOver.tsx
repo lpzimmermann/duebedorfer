@@ -22,9 +22,9 @@ function GameOver({ standings, onNewGame }: GameOverProps) {
       </div>
 
       <div className="card winner-card">
-        <h2>Gwunne het...</h2>
+        <h2>Gwunne hät...</h2>
         <p className="winner-name">{winner?.player.name}</p>
-        <p className="winner-points">{winner?.total} Punkt – weniger geht nöd! 👑</p>
+        <p className="winner-points">{winner?.total} Pünkt – weniger gaht nöd! 👑</p>
       </div>
 
       <Scoreboard standings={standings} title="Schlusstand" />

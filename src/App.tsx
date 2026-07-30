@@ -5,7 +5,7 @@ import RoundScoring from './components/RoundScoring'
 import CountRoundWizard from './components/CountRoundWizard'
 import Scoreboard from './components/Scoreboard'
 import GameOver from './components/GameOver'
-import { ROUNDS } from './game/rounds'
+import { buildRounds } from './game/rounds'
 import { resultForRound, totalsByPlayer, withRoundResult } from './game/scoring'
 import { clearGame, loadGame, saveGame } from './game/storage'
 import type { GameState, Player, RoundScores } from './game/types'
@@ -13,6 +13,7 @@ import type { GameState, Player, RoundScores } from './game/types'
 const INITIAL_STATE: GameState = {
   phase: 'setup',
   players: [],
+  deckCount: 1,
   results: [],
   currentRound: 0,
 }
@@ -28,14 +29,16 @@ function App() {
     }
   }, [game])
 
-  function startGame(players: Player[]) {
-    setGame({ phase: 'playing', players, results: [], currentRound: 0 })
+  const rounds = game.players.length > 0 ? buildRounds(game.deckCount || 1, game.players.length) : []
+
+  function startGame(players: Player[], deckCount: number) {
+    setGame({ phase: 'playing', players, deckCount, results: [], currentRound: 0 })
   }
 
   function confirmRound(scores: RoundScores) {
-    const round = ROUNDS[game.currentRound]
+    const round = rounds[game.currentRound]
     const results = withRoundResult(game, { roundId: round.id, scores })
-    const isLastRound = game.currentRound === ROUNDS.length - 1
+    const isLastRound = game.currentRound === rounds.length - 1
     setGame({
       ...game,
       results,
@@ -58,7 +61,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Dübendorfer</h1>
-        <p className="tagline">De Jass-Punktezähler für alli, wo möglichst wenig wei ha</p>
+        <p className="tagline">Dr Jass-Zähler für alli, wo am liebschte wenig Pünkt hei</p>
       </header>
 
       <main className="app-main">
@@ -66,7 +69,7 @@ function App() {
 
         {game.phase === 'playing' &&
           (() => {
-            const round = ROUNDS[game.currentRound]
+            const round = rounds[game.currentRound]
             const initialScores = resultForRound(game.results, round.id)?.scores
             return (
               <div className="playing-layout">
@@ -77,7 +80,7 @@ function App() {
                     players={game.players}
                     initialScores={initialScores}
                     roundNumber={game.currentRound + 1}
-                    totalRounds={ROUNDS.length}
+                    totalRounds={rounds.length}
                     onConfirm={confirmRound}
                     onBack={game.currentRound > 0 ? goBack : undefined}
                   />
@@ -88,7 +91,7 @@ function App() {
                     players={game.players}
                     initialScores={initialScores}
                     roundNumber={game.currentRound + 1}
-                    totalRounds={ROUNDS.length}
+                    totalRounds={rounds.length}
                     onConfirm={confirmRound}
                     onBack={game.currentRound > 0 ? goBack : undefined}
                   />

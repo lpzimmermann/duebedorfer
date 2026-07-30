@@ -155,12 +155,14 @@
 
 .player-row input {
   flex: 1;
+  min-width: 0;
   font: inherit;
   padding: 10px 12px;
   border-radius: 10px;
   border: 2px solid var(--card-border);
   background: #fff;
   color: var(--text-h);
+  box-sizing: border-box;
 }
 
 .player-row input:focus {
@@ -168,9 +170,56 @@
   border-color: var(--swiss-red);
 }
 
-.setup .secondary-button {
+.add-player-button {
   width: 100%;
   margin-bottom: 16px;
+}
+
+.deck-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0 24px;
+}
+
+.deck-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100px;
+  padding: 16px 8px;
+  border-radius: 16px;
+  border: 2px solid var(--card-border);
+  background: #fff;
+  color: var(--text-h);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+}
+
+.deck-button:hover {
+  border-color: var(--swiss-red);
+  transform: translateY(-2px);
+}
+
+.deck-button.selected {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.18);
+}
+
+.deck-count {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.deck-label {
+  font-size: 13px;
+  color: var(--text);
 }
 
 /* Playing layout */
