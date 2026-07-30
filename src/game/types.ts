@@ -10,6 +10,8 @@ export interface CountRound {
   emoji: string
   description: string
   pointsPerUnit: number
+  /** Total units (e.g. cards) that exist to be distributed among all players. */
+  maxTotal: number
 }
 
 export interface SingleRound {

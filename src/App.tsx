@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import PlayerSetup from './components/PlayerSetup'
 import RoundScoring from './components/RoundScoring'
+import CountRoundWizard from './components/CountRoundWizard'
 import Scoreboard from './components/Scoreboard'
 import GameOver from './components/GameOver'
 import { ROUNDS } from './game/rounds'
@@ -63,20 +64,39 @@ function App() {
       <main className="app-main">
         {game.phase === 'setup' && <PlayerSetup onStart={startGame} />}
 
-        {game.phase === 'playing' && (
-          <div className="playing-layout">
-            <RoundScoring
-              round={ROUNDS[game.currentRound]}
-              players={game.players}
-              initialScores={resultForRound(game.results, ROUNDS[game.currentRound].id)?.scores}
-              roundNumber={game.currentRound + 1}
-              totalRounds={ROUNDS.length}
-              onConfirm={confirmRound}
-              onBack={game.currentRound > 0 ? goBack : undefined}
-            />
-            <Scoreboard standings={standings} />
-          </div>
-        )}
+        {game.phase === 'playing' &&
+          (() => {
+            const round = ROUNDS[game.currentRound]
+            const initialScores = resultForRound(game.results, round.id)?.scores
+            return (
+              <div className="playing-layout">
+                {round.type === 'count' ? (
+                  <CountRoundWizard
+                    key={round.id}
+                    round={round}
+                    players={game.players}
+                    initialScores={initialScores}
+                    roundNumber={game.currentRound + 1}
+                    totalRounds={ROUNDS.length}
+                    onConfirm={confirmRound}
+                    onBack={game.currentRound > 0 ? goBack : undefined}
+                  />
+                ) : (
+                  <RoundScoring
+                    key={round.id}
+                    round={round}
+                    players={game.players}
+                    initialScores={initialScores}
+                    roundNumber={game.currentRound + 1}
+                    totalRounds={ROUNDS.length}
+                    onConfirm={confirmRound}
+                    onBack={game.currentRound > 0 ? goBack : undefined}
+                  />
+                )}
+                <Scoreboard standings={standings} />
+              </div>
+            )
+          })()}
 
         {game.phase === 'finished' && <GameOver standings={standings} onNewGame={newGame} />}
       </main>

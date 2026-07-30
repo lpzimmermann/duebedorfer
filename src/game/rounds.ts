@@ -13,6 +13,7 @@ export const ROUNDS: RoundDef[] = [
     emoji: '🃏',
     description: 'Jeder Stich zählt 1 Punkt.',
     pointsPerUnit: 1,
+    maxTotal: 9,
   },
   {
     id: 'schaelle',
@@ -21,6 +22,7 @@ export const ROUNDS: RoundDef[] = [
     emoji: '🔔',
     description: 'Jede Schälle zählt 1 Punkt.',
     pointsPerUnit: 1,
+    maxTotal: 9,
   },
   {
     id: 'ober',
@@ -29,6 +31,7 @@ export const ROUNDS: RoundDef[] = [
     emoji: '👑',
     description: 'Jeder Ober zählt 2 Punkte.',
     pointsPerUnit: 2,
+    maxTotal: 4,
   },
   {
     id: 'schaelle-koenig',

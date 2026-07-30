@@ -109,6 +109,12 @@
   color: var(--swiss-red);
 }
 
+.icon-button-placeholder {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+}
+
 .icon-button {
   background: var(--card-bg);
   color: var(--text-h);
@@ -227,12 +233,6 @@
   color: var(--text-h);
 }
 
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .stepper-value {
   min-width: 1.5em;
   font-weight: 700;
@@ -246,6 +246,64 @@
   font-variant-numeric: tabular-nums;
   color: var(--swiss-red-dark);
   font-weight: 600;
+}
+
+/* Count round wizard */
+.wizard-intro,
+.wizard-dial,
+.wizard-review {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wizard-hint {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.wizard-player {
+  font-size: 19px;
+  color: var(--text-h);
+}
+
+.wizard-player-name {
+  color: var(--swiss-red);
+  font-weight: 700;
+}
+
+.dial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+
+.dial-button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--card-border);
+  background: #fff;
+  color: var(--text-h);
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    border-color 0.15s;
+}
+
+.dial-button:hover {
+  border-color: var(--swiss-red);
+  color: var(--swiss-red);
+  transform: translateY(-2px);
+}
+
+.dial-button:active {
+  transform: translateY(1px);
 }
 
 .winner-button {
@@ -267,12 +325,6 @@
   border-color: var(--gold);
   background: rgba(212, 175, 55, 0.18);
   color: var(--swiss-red-dark);
-}
-
-.round-total-hint {
-  font-size: 14px;
-  color: var(--text);
-  margin-bottom: 16px;
 }
 
 .round-actions {
