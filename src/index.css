@@ -1,3 +1,31 @@
+/*
+ * Self-hosted rather than loaded from Google Fonts: the Android build
+ * (via Capacitor) runs fully offline, and this is a variable font, so one
+ * file covers weights 500/600/700 — the browser picks the instance based
+ * on the font-weight declared in each rule below.
+ */
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('./assets/fonts/baloo2-latin.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('./assets/fonts/baloo2-latin.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('./assets/fonts/baloo2-latin.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --felt: #0b6e4f;
   --felt-dark: #084a35;
