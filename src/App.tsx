@@ -5,6 +5,7 @@ import RoundScoring from './components/RoundScoring'
 import CountRoundWizard from './components/CountRoundWizard'
 import Scoreboard from './components/Scoreboard'
 import GameOver from './components/GameOver'
+import ConfirmDialog from './components/ConfirmDialog'
 import { buildRounds } from './game/rounds'
 import { resultForRound, totalsByPlayer, withRoundResult } from './game/scoring'
 import { clearGame, loadGame, saveGame } from './game/storage'
@@ -20,6 +21,7 @@ const INITIAL_STATE: GameState = {
 
 function App() {
   const [game, setGame] = useState<GameState>(() => loadGame() ?? INITIAL_STATE)
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
 
   useEffect(() => {
     if (game.phase === 'setup') {
@@ -60,9 +62,33 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
+        {game.phase !== 'setup' && (
+          <button
+            type="button"
+            className="reset-button"
+            aria-label="Spiel zrugsetze"
+            onClick={() => setShowResetConfirm(true)}
+          >
+            ↺
+          </button>
+        )}
         <h1>Dübendorfer</h1>
         <p className="tagline">Dr Jass-Zähler für alli, wo am liebschte wenig Pünkt hei</p>
       </header>
+
+      {showResetConfirm && (
+        <ConfirmDialog
+          title="Spiel würklich zrugsetze?"
+          message="Das löscht de ganz Punktestand vo däm Spiel. Das cha me nüme rückgängig mache."
+          confirmLabel="Ja, zrugsetze"
+          cancelLabel="Abbräche"
+          onConfirm={() => {
+            newGame()
+            setShowResetConfirm(false)
+          }}
+          onCancel={() => setShowResetConfirm(false)}
+        />
+      )}
 
       <main className="app-main">
         {game.phase === 'setup' && <PlayerSetup onStart={startGame} />}
