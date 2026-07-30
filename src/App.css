@@ -37,12 +37,6 @@
     transform 0.2s;
 }
 
-.reset-button:hover {
-  border-color: var(--swiss-red);
-  color: var(--swiss-red);
-  transform: rotate(-45deg);
-}
-
 .tagline {
   color: var(--card-bg);
   opacity: 0.85;
@@ -85,6 +79,17 @@
 .dialog-message {
   color: var(--text);
   margin-bottom: 20px;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dialog-actions .primary-button,
+.dialog-actions .secondary-button {
+  width: 100%;
 }
 
 /* Playing-card look shared by every panel */
@@ -133,10 +138,6 @@
   width: 100%;
 }
 
-.primary-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
-
 .primary-button:active:not(:disabled) {
   transform: translateY(2px);
   box-shadow: 0 2px 0 var(--swiss-red-dark);
@@ -153,11 +154,6 @@
   color: var(--text-h);
   border: 2px solid var(--card-border);
   padding: 10px 20px;
-}
-
-.secondary-button:hover {
-  border-color: var(--swiss-red);
-  color: var(--swiss-red);
 }
 
 .icon-button-placeholder {
@@ -177,11 +173,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-.icon-button:hover {
-  border-color: var(--swiss-red);
-  color: var(--swiss-red);
 }
 
 /* Player setup */
@@ -251,11 +242,6 @@
   transition:
     border-color 0.15s,
     transform 0.15s;
-}
-
-.deck-button:hover {
-  border-color: var(--swiss-red);
-  transform: translateY(-2px);
 }
 
 .deck-button.selected {
@@ -396,11 +382,6 @@
     border-color 0.15s;
 }
 
-.dial-button:hover {
-  border-color: var(--swiss-red);
-  color: var(--swiss-red);
-  transform: translateY(-2px);
-}
 
 .dial-button:active {
   transform: translateY(1px);
@@ -533,4 +514,45 @@
 
 .game-over .primary-button {
   max-width: 460px;
+}
+
+/*
+ * Hover feedback only for pointers that can actually hover (mouse/trackpad).
+ * On touch devices, tapping a button synthesizes a :hover that then sticks
+ * until something else is tapped — so the button a player just picked keeps
+ * looking "selected" once the next player's (differently laid out) dial
+ * renders in the same screen position. Scoping :hover behind this media
+ * query keeps taps from leaving any lingering visual state.
+ */
+@media (hover: hover) and (pointer: fine) {
+  .reset-button:hover {
+    border-color: var(--swiss-red);
+    color: var(--swiss-red);
+    transform: rotate(-45deg);
+  }
+
+  .primary-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  .secondary-button:hover {
+    border-color: var(--swiss-red);
+    color: var(--swiss-red);
+  }
+
+  .icon-button:hover {
+    border-color: var(--swiss-red);
+    color: var(--swiss-red);
+  }
+
+  .deck-button:hover {
+    border-color: var(--swiss-red);
+    transform: translateY(-2px);
+  }
+
+  .dial-button:hover {
+    border-color: var(--swiss-red);
+    color: var(--swiss-red);
+    transform: translateY(-2px);
+  }
 }

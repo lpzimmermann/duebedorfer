@@ -10,6 +10,26 @@ import type { RoundDef } from './types'
  * how many players are splitting the deck.
  */
 export function buildRounds(deckCount: number, playerCount: number): RoundDef[] {
+  const schaelleKoenig: RoundDef =
+    deckCount === 1
+      ? {
+          id: 'schaelle-koenig',
+          type: 'single',
+          name: 'Schälle König',
+          emoji: '🤴',
+          description: 'Wer de Schälle König sticht, überchunnt 5 Pünkt.',
+          points: 5,
+        }
+      : {
+          id: 'schaelle-koenig',
+          type: 'count',
+          name: 'Schälle König',
+          emoji: '🤴',
+          description: 'Jede Schälle-König git 5 Pünkt.',
+          pointsPerUnit: 5,
+          maxTotal: deckCount,
+        }
+
   return [
     {
       id: 'stich',
@@ -38,15 +58,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
       pointsPerUnit: 2,
       maxTotal: deckCount * 4,
     },
-    {
-      id: 'schaelle-koenig',
-      type: 'count',
-      name: 'Schälle König',
-      emoji: '🤴',
-      description: 'Jede Schälle-König git 5 Pünkt.',
-      pointsPerUnit: 5,
-      maxTotal: deckCount,
-    },
+    schaelleKoenig,
     {
       id: 'letzter-stich',
       type: 'single',

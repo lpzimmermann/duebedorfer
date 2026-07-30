@@ -1,3 +1,8 @@
+interface DialogAction {
+  label: string
+  onClick: () => void
+}
+
 interface ConfirmDialogProps {
   title: string
   message: string
@@ -5,6 +10,8 @@ interface ConfirmDialogProps {
   cancelLabel: string
   onConfirm: () => void
   onCancel: () => void
+  /** An optional middle-ground action rendered between cancel and confirm. */
+  extraAction?: DialogAction
 }
 
 function ConfirmDialog({
@@ -14,6 +21,7 @@ function ConfirmDialog({
   cancelLabel,
   onConfirm,
   onCancel,
+  extraAction,
 }: ConfirmDialogProps) {
   return (
     <div className="dialog-overlay" onClick={onCancel}>
@@ -26,10 +34,15 @@ function ConfirmDialog({
       >
         <h2 id="dialog-title">{title}</h2>
         <p className="dialog-message">{message}</p>
-        <div className="round-actions">
+        <div className="dialog-actions">
           <button type="button" className="secondary-button" onClick={onCancel}>
             {cancelLabel}
           </button>
+          {extraAction && (
+            <button type="button" className="secondary-button" onClick={extraAction.onClick}>
+              {extraAction.label}
+            </button>
+          )}
           <button type="button" className="primary-button" onClick={onConfirm}>
             {confirmLabel}
           </button>

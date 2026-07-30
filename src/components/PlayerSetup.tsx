@@ -52,7 +52,7 @@ function PlayerSetup({ onStart }: PlayerSetupProps) {
     return (
       <div className="setup card">
         <h2>Wie viel Kartespiel? 🎴</h2>
-        <p className="setup-hint">Mit meh Spiel git's o meh Stich, Schälle und Ober zum verteile.</p>
+        <p className="setup-hint">Mit meh Deck git's o meh Stich, Schälle und Ober zum verteile.</p>
 
         <div className="deck-options">
           {DECK_OPTIONS.map((count) => (
@@ -63,7 +63,7 @@ function PlayerSetup({ onStart }: PlayerSetupProps) {
               onClick={() => setDeckCount(count)}
             >
               <span className="deck-count">{count}</span>
-              <span className="deck-label">Spiel</span>
+              <span className="deck-label">Deck</span>
             </button>
           ))}
         </div>
