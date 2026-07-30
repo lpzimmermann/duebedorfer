@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Dübendorfer</string>
+    <string name="title_activity_main">Dübendorfer</string>
+    <string name="package_name">ch.duebedorfer.jass</string>
+    <string name="custom_url_scheme">ch.duebedorfer.jass</string>
+</resources>
