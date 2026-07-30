@@ -90,14 +90,6 @@ function CountRoundWizard({
     }
   }
 
-  function reviewBack() {
-    if (lastManual >= 0) {
-      editFromReview(lastManual)
-    } else {
-      setPhase('intro')
-    }
-  }
-
   function confirm() {
     const scores: RoundScores = {}
     for (const player of players) {
@@ -197,9 +189,11 @@ function CountRoundWizard({
             ))}
           </ul>
           <div className="round-actions">
-            <button type="button" className="secondary-button" onClick={reviewBack}>
-              ← Zrugg
-            </button>
+            {onBack && (
+              <button type="button" className="secondary-button" onClick={onBack}>
+                ← Zrugg
+              </button>
+            )}
             <button type="button" className="primary-button" onClick={confirm}>
               {roundNumber === totalRounds ? 'Spiel fertig 🏆' : 'Nächschti Runde →'}
             </button>
