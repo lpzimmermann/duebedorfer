@@ -57,6 +57,10 @@ function App() {
     setGame(INITIAL_STATE)
   }
 
+  function restartWithSamePlayers() {
+    setGame((prev) => ({ ...prev, phase: 'playing', results: [], currentRound: 0 }))
+  }
+
   const standings = totalsByPlayer(game.players, game.results)
 
   return (
@@ -82,6 +86,13 @@ function App() {
           message="Das löscht de ganz Punktestand vo däm Spiel. Das cha me nüme rückgängig mache."
           confirmLabel="Ja, zrugsetze"
           cancelLabel="Abbräche"
+          extraAction={{
+            label: 'Nomol mit gliche Spieler',
+            onClick: () => {
+              restartWithSamePlayers()
+              setShowResetConfirm(false)
+            },
+          }}
           onConfirm={() => {
             newGame()
             setShowResetConfirm(false)

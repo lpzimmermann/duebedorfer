@@ -143,7 +143,7 @@ function CountRoundWizard({
           const player = players[playerIndex]
           const options = Array.from({ length: remaining + 1 }, (_, n) => n)
           return (
-            <div className="wizard-dial">
+            <div className="wizard-dial" key={playerIndex}>
               <p className="wizard-player">
                 Wie viel <strong>{round.name}</strong> hät{' '}
                 <span className="wizard-player-name">{player.name}</span> gno?
