@@ -73,7 +73,7 @@ function App() {
           </button>
         )}
         <h1>Dübendorfer</h1>
-        <p className="tagline">Dr Jass-Zähler für alli, wo am liebschte wenig Pünkt hei</p>
+        <p className="tagline">De Jass-Zähler für alli, wo am liebschte wenig Pünkt händ</p>
       </header>
 
       {showResetConfirm && (
