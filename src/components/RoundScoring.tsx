@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Player, RoundScores, SingleRound } from '../game/types'
+import ElferausDiagram from './ElferausDiagram'
 
 interface RoundScoringProps {
   round: SingleRound
@@ -50,6 +51,26 @@ function RoundScoring({
         </h2>
         <p className="round-description">{round.description}</p>
       </div>
+
+      {round.id === 'elferaus' && (
+        <div className="elferaus-explainer">
+          <h3>Wie gaht de Elferaus?</h3>
+          <p>
+            Jedi Farb fangt i de Mitti mit emene Zäni a. Drunder chunnt – aber nur, wenn s Zäni
+            scho ligt – zerscht s Nüni, dennzumal s Achti, s Sibni und ganz zletscht s Sächsi.
+            Obenuse gaht's glich: Under, Ober, König und Ass chöme dezue, aber jedes nur, wenn d
+            Charte drunder scho ligt.
+          </p>
+          <ElferausDiagram />
+          <p>
+            Wenn du dra bisch, muesch – wenn's gaht – mindeschtens ei Charte abelege. Was witers
+            gültig wär, darfsch zrugghalte. Ligt zum Bispiel scho s Eichle Nüni, darfsch (muesch
+            aber nur eis) s Eichle Achti abelege. Häsch no meh gültigi Charte, chasch die o
+            abelege – muesch aber nöd, und manchmal isch's taktisch besser, wenn d's nöd machsch.
+          </p>
+          <p>Wer als Letschti no Charte i de Hand hät, verliert d Rundi und überchunnt 5 Pünkt.</p>
+        </div>
+      )}
 
       <ul className="winner-list">
         {players.map((player) => (

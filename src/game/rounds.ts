@@ -17,7 +17,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
           type: 'single',
           name: 'Schälle König',
           emoji: '🤴',
-          description: 'Wer de Schälle König sticht, überchunnt 5 Pünkt.',
+          description: 'Obenabe ⬇️ – Wer de Schälle König sticht, überchunnt 5 Pünkt.',
           points: 5,
         }
       : {
@@ -25,7 +25,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
           type: 'count',
           name: 'Schälle König',
           emoji: '🤴',
-          description: 'Jede Schälle-König git 5 Pünkt.',
+          description: 'Obenabe ⬇️ – Jede Schälle-König git 5 Pünkt.',
           pointsPerUnit: 5,
           maxTotal: deckCount,
         }
@@ -36,7 +36,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
       type: 'count',
       name: 'Stich',
       emoji: '🃏',
-      description: 'Jede Stich zellt 1 Punkt.',
+      description: 'Obenabe ⬇️ – Jede Stich zellt 1 Punkt.',
       pointsPerUnit: 1,
       maxTotal: Math.floor((deckCount * 36) / playerCount),
     },
@@ -45,7 +45,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
       type: 'count',
       name: 'Schälle',
       emoji: '🔔',
-      description: 'Jedi Schälle zellt 1 Punkt.',
+      description: 'Obenabe ⬇️ – Jedi Schälle zellt 1 Punkt.',
       pointsPerUnit: 1,
       maxTotal: deckCount * 9,
     },
@@ -54,7 +54,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
       type: 'count',
       name: 'Ober',
       emoji: '👑',
-      description: 'Jede Ober zellt 2 Pünkt.',
+      description: 'Obenabe ⬇️ – Jede Ober zellt 2 Pünkt.',
       pointsPerUnit: 2,
       maxTotal: deckCount * 4,
     },
@@ -64,7 +64,7 @@ export function buildRounds(deckCount: number, playerCount: number): RoundDef[] 
       type: 'single',
       name: 'Letschti Stich',
       emoji: '🏁',
-      description: 'Wer de letscht Stich macht, überchunnt 5 Pünkt.',
+      description: 'Obenabe ⬇️ – Wer de letscht Stich macht, überchunnt 5 Pünkt.',
       points: 5,
     },
     {

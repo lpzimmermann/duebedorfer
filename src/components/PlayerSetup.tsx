@@ -79,6 +79,10 @@ function PlayerSetup({ onStart, suitEmoji }: PlayerSetupProps) {
     <form className="setup card" onSubmit={handleSubmit}>
       <h2>Wär spillt mit? 🎉</h2>
       <p className="setup-hint">Zwüschet 2 und 8 Spieler:inne.</p>
+      <p className="setup-hint">
+        Am beschte tuesch sie i de Reihefolg yytrage, wie am Tisch gsässe wird – also eifach{' '}
+        <em>de Ohrfiige nah</em>.
+      </p>
 
       <ul className="player-list">
         {names.map((name, index) => (

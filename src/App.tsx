@@ -8,7 +8,7 @@ import GameOver from './components/GameOver'
 import ConfirmDialog from './components/ConfirmDialog'
 import MemeSoundButton from './components/MemeSoundButton'
 import { buildRounds } from './game/rounds'
-import { resultForRound, totalsByPlayer, withRoundResult } from './game/scoring'
+import { resultForRound, rotatePlayersForRound, totalsByPlayer, withRoundResult } from './game/scoring'
 import { clearGame, loadGame, saveGame } from './game/storage'
 import type { GameState, Player, RoundScores } from './game/types'
 import { loadTheme, saveTheme, THEME_CONTENT, type Theme } from './theme'
@@ -119,13 +119,14 @@ function App() {
           (() => {
             const round = rounds[game.currentRound]
             const initialScores = resultForRound(game.results, round.id)?.scores
+            const roundPlayers = rotatePlayersForRound(game.players, game.currentRound)
             return (
               <div className="playing-layout">
                 {round.type === 'count' ? (
                   <CountRoundWizard
                     key={round.id}
                     round={round}
-                    players={game.players}
+                    players={roundPlayers}
                     initialScores={initialScores}
                     roundNumber={game.currentRound + 1}
                     totalRounds={rounds.length}
@@ -136,7 +137,7 @@ function App() {
                   <RoundScoring
                     key={round.id}
                     round={round}
-                    players={game.players}
+                    players={roundPlayers}
                     initialScores={initialScores}
                     roundNumber={game.currentRound + 1}
                     totalRounds={rounds.length}
